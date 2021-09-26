@@ -8,7 +8,7 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 
-import com.ist.lifecyclerlib.listener.LifeListenerAdapter;
+import com.ist.lifecyclerlib.listener.LifecycleListener;
 import com.ist.lifecyclerlib.widget.LifeFragment;
 import com.ist.lifecyclerlib.widget.SupportLifeFragment;
 
@@ -18,14 +18,14 @@ import com.ist.lifecyclerlib.widget.SupportLifeFragment;
  */
 
 public class ZRequestManager {
-    private LifeListenerAdapter mListener;
+    private LifecycleListener mListener;
     private static final String LIFECYCLE_TAG = "LIFECYCLE_TAG";
     public ZRequestManager(){
 
     }
 
-    public ZRequestManager get(Context context,LifeListenerAdapter lifeListenerAdapter){
-        mListener = lifeListenerAdapter;
+    public ZRequestManager get(Context context, LifecycleListener listener){
+        mListener = listener;
         if (context == null) {
             throw new IllegalArgumentException("You cannot start a load on a null Context");
         }else if (context instanceof FragmentActivity){

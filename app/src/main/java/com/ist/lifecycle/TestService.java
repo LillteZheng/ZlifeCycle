@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.ist.lifecyclerlib.ZLifeCycle;
-import com.ist.lifecyclerlib.listener.LifeListenerAdapter;
+import com.ist.lifecyclerlib.listener.LifecycleListener;
 
 /**
  * Created by zhengshaorui
@@ -25,21 +25,20 @@ public class TestService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        ZLifeCycle.with(this, new LifeListenerAdapter() {
+        ZLifeCycle.with(this, new LifecycleListener() {
             @Override
-            public void onResume() {
-                super.onResume();
+            public void onPause() {
+
             }
 
             @Override
             public void onDestroy() {
-                super.onDestroy();
+
             }
 
             @Override
             public void onFail(String errorMsg) {
-                super.onFail(errorMsg);
-                Log.d(TAG, "zsr --> onFail: "+errorMsg);
+
             }
         });
     }

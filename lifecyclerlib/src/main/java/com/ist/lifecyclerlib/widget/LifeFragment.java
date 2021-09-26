@@ -2,8 +2,9 @@ package com.ist.lifecyclerlib.widget;
 
 
 import android.app.Fragment;
+import android.os.Bundle;
 
-import com.ist.lifecyclerlib.listener.LifeListenerAdapter;
+import com.ist.lifecyclerlib.listener.LifecycleListener;
 
 /**
  * Created by zhengshaorui
@@ -12,48 +13,66 @@ import com.ist.lifecyclerlib.listener.LifeListenerAdapter;
 
 public class LifeFragment extends Fragment {
 
-    private LifeListenerAdapter mLifeListerAdapter;
-    public void registerListener(LifeListenerAdapter lifeLiseterAdapter){
-        mLifeListerAdapter = lifeLiseterAdapter;
+    private LifecycleListener listener;
+    public void registerListener(LifecycleListener listener){
+        this.listener = listener;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        if (mLifeListerAdapter != null){
-            mLifeListerAdapter.onStart();
+        if (listener != null){
+            listener.onStart();
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (mLifeListerAdapter != null){
-            mLifeListerAdapter.onResume();
+        if (listener != null){
+            listener.onResume();
         }
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (listener != null) {
+            listener.onSaveInstanceState(outState);
+        }
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        if (listener != null) {
+            listener.onLowMemory();
+        }
+    }
+
+
+
+    @Override
     public void onPause() {
         super.onPause();
-        if (mLifeListerAdapter != null){
-            mLifeListerAdapter.onPause();
+        if (listener != null){
+            listener.onPause();
         }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (mLifeListerAdapter != null){
-            mLifeListerAdapter.onStop();
+        if (listener != null){
+            listener.onStop();
         }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mLifeListerAdapter != null){
-            mLifeListerAdapter.onDestroy();
+        if (listener != null){
+            listener.onDestroy();
         }
     }
 }
